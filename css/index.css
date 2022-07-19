@@ -1,0 +1,139 @@
+/*FONTS*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+/*MISC*/
+/*FONT-FAMILY*/
+/*FONT-SIZES*/
+/*SPACINGS*/
+/*COLORS*/
+/*NORMALIZE ELEMENTS*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Nunito", sans-serif; }
+
+p {
+  font-family: "PT Sans", sans-serif; }
+
+/*FLEX*/
+/*TEXT SHORTENING*/
+/*MEDIA QUERIES*/
+/*PARTIALS*/
+/*HEADER*/
+header {
+  background-color: #EDF2F4;
+  height: 15vh;
+  font-family: "PT Sans", sans-serif;
+  font-size: 2.2em;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  position: sticky; }
+  header .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 0 1.2em; }
+    header .navbar .btn .iconify {
+      font-size: 5em; }
+    header .navbar .offcanvas {
+      background-color: #EDF2F4; }
+      header .navbar .offcanvas-header .offcanvas-title {
+        font-size: 2.9em;
+        font-family: "Nunito", sans-serif;
+        font-weight: 800; }
+      header .navbar .offcanvas-body {
+        font-size: 2.2em;
+        font-family: "PT Sans", sans-serif;
+        height: 60%;
+        flex-grow: 0; }
+      header .navbar .offcanvas form {
+        margin: 0 auto; }
+        header .navbar .offcanvas form .form-check-input {
+          margin: auto 1.2em;
+          height: 1.5em;
+          width: 3.5em; }
+          header .navbar .offcanvas form .form-check-input:focus {
+            box-shadow: none;
+            border-color: rgba(0, 0, 0, 0.4);
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(0,0,0,0.25)'/></svg>"); }
+          header .navbar .offcanvas form .form-check-input:checked {
+            background-color: #D90429;
+            border: none;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>"); }
+        header .navbar .offcanvas form .form-check-label {
+          font-size: 2.2em;
+          line-height: 0.8em; }
+          header .navbar .offcanvas form .form-check-label .iconify {
+            margin: auto 0; }
+    header .navbar__logo {
+      margin: 0;
+      height: 15vh; }
+      header .navbar__logo img {
+        height: 100%; }
+
+footer {
+  height: 10vh;
+  border-top: 2px solid #0B090A;
+  background-color: #EDF2F4;
+  position: sticky;
+  font-family: "PT Sans", sans-serif; }
+  footer ul {
+    font-size: 2.2em; }
+    footer ul li a:hover {
+      text-decoration: underline; }
+  footer p {
+    font-size: 1.5em; }
+
+/*VIEWS*/
+.home-main {
+  background: url("../../img/geofinder/gf-home-background.svg") no-repeat center center fixed;
+  height: 75vh;
+  background-color: #EDF2F4;
+  width: 100vw;
+  padding: 5vh 0; }
+  .home-main .container {
+    height: 65vh;
+    width: 30vw;
+    padding: 5vh 0 7vh;
+    z-index: 10;
+    background-color: white;
+    border-radius: 5em;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.4); }
+    .home-main .container h1 {
+      font-size: 6.5em; }
+    .home-main .container h2 {
+      font-size: 4.5em; }
+    .home-main .container p {
+      font-size: 2.2em; }
+    .home-main .container .btn {
+      height: 20%;
+      width: 60%;
+      font-size: 4.5em;
+      border-radius: 5em;
+      background-color: #D90429;
+      box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
+      transition: all 500ms; }
+      .home-main .container .btn:hover {
+        background-color: #EF233C;
+        transform: scale(1.1);
+        transition: all 500ms; }
+    .home-main .container .carousel {
+      margin-top: 5%;
+      height: 15vh; }
+      .home-main .container .carousel-control-prev {
+        left: -15%;
+        top: -25%; }
+      .home-main .container .carousel-control-next {
+        right: -15%;
+        top: -25%; }
