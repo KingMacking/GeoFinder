@@ -1,52 +1,4 @@
-// let day = prompt("¿En que dia naciste? (En numeros)");
-// let month = prompt("¿En que mes naciste? (En numeros)");
-// let year = prompt("¿En que año naciste?");
-// let birthdate = day + "/" + month + "/" + year;
-
-// alert("Tu fecha de nacimiento es "+birthdate);
-
-// let age = parseInt(prompt("¿Cuantos años tenes?"));
-// const nowYear = 2022;
-// let birthYear = nowYear * age;
-// alert("Naciste en "+birthYear);
-
-
-
-
-
-// const minEntryAge = 18;
-// const maxEntryAge = 38;
-// const idName = "Matias";
-// const idLname = "Atzori";
-// const moneyNeeded = 330;
-
-// let enterTry = 0;
-
-// while (enterTry < 2){
-//     let myAge = parseInt(prompt("¿Cuantos años tenes?"));
-//     let myName = prompt("¿Cual es tu nombre?");
-//     let myLname = prompt("¿Cual es tu apellido?");
-//     let myMoney = parseInt(prompt("¿Cuanto dinero tienes?"));
-//     if ((myAge<minEntryAge) || (myAge>maxEntryAge)) {
-//         alert("Tu edad esta fuera de los limites de establecimiento");
-//         enterTry++;
-//         continue;
-//     } else if ((myName!=idName) || (myLname!=idLname)) {
-//         alert("Tu nombre no coincide con tu credencial");
-//         enterTry++;
-//         continue;
-//     } else if (myMoney<moneyNeeded) {
-//         alert("No posees el dinero para abonar la entrada");
-//         enterTry++;
-//     } else {
-//         alert("Puedes pasar");
-//         break;
-//     }
-// }
-// if (enterTry==2){
-//     alert("No puedes entrar al establecimiento, vuelve otro dia")
-// }
-
+import {countryData} from './countries.js'
 //Constructor de paises del juego
 class Country {
     constructor(name, latitude, longitude, code) {
@@ -77,7 +29,7 @@ const country4 = new Country("United Kingdom", 55.378051, -3.435973, "GB");
 const country5 = new Country("Italy", 41.87194, 12.56738, "IT");
 
 function getDistance (lat1, lon1, lat2, lon2) {
-    toRad = function (x) {return x*Math.PI/180};
+    const toRad = function (x) {return x*Math.PI/180};
     let R = 6378.137; //Earth radius
     let dLat = toRad(lat2-lat1);
     let dLong = toRad(lon2-lon1);
@@ -102,10 +54,9 @@ function compareCountries(){
     let errorCount = 0;
 
     const countryA = country1;
-    while (errorCount < 5) {
+    for (let errorCount = 0; errorCount<5 ; errorCount++) {
         let countryB = prompt("Adivina el pais, tus opciones son: Argentina, Belgium, Brazil, United Kingdom, Italy")
         if (countryA.name != countryB){
-            errorCount++
             if (countryB === country2.name) {
                 distance = Math.round(getDistance(countryA.latitude, countryA.longitude, country2.latitude, country2.longitude));
                 alert("El pais se encuentra "+distance+"KM mas hacia "+SouthWest);
@@ -125,10 +76,12 @@ function compareCountries(){
             alert("¡Correcto, el pais a adivinar era Argentina!");
             break;
         }
-    }
-    if (errorCount == 5) {
-        alert("Has errado 5 veces por lo tanto has perdido la partida, vuelve a intentarlo :)")
+        // if (errorCount == 5) {
+        //     alert("Has errado 5 veces por lo tanto has perdido la partida, vuelve a intentarlo :)");
+        // }
     }
 }
 
 compareCountries();
+// let countries = Object.keys(countryData);
+// alert(countries[Math.round(Math.random()*countries.length)])
