@@ -1,33 +1,28 @@
 import {countryData} from './countries.js'
 //Constructor de paises del juego
-class Country {
-    constructor(name, latitude, longitude, code) {
-        this.name = name;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.code = code;
-    }
+// class Country {
+//     constructor(name, latitude, longitude, code) {
+//         this.name = name;
+//         this.latitude = latitude;
+//         this.longitude = longitude;
+//         this.code = code;
+//     }
 
-    getName(){
-        console.log(this.name);
-    }
-    getLatitude(){
-        console.log(this.latitude);
-    }
-    getLongitude(){
-        console.log(this.longitude);
-    }
-    getCode(){
-        console.log(this.code);
-    }
-}
+//     getName(){
+//         console.log(this.name);
+//     }
+//     getLatitude(){
+//         console.log(this.latitude);
+//     }
+//     getLongitude(){
+//         console.log(this.longitude);
+//     }
+//     getCode(){
+//         console.log(this.code);
+//     }
+// }
 
-const country1 = new Country("Argentina", -38.416097, -63.616672, "AR");
-const country2 = new Country("Belgium", 50.503887, 4.469936, "BE");
-const country3 = new Country("Brazil", -14.235004, -51.92528, "BR");
-const country4 = new Country("United Kingdom", 55.378051, -3.435973, "GB");
-const country5 = new Country("Italy", 41.87194, 12.56738, "IT");
-
+//Obtain distance between centers of countries
 function getDistance (lat1, lon1, lat2, lon2) {
     const toRad = function (x) {return x*Math.PI/180};
     let R = 6378.137; //Earth radius
@@ -41,7 +36,7 @@ function getDistance (lat1, lon1, lat2, lon2) {
     return d;
 }
 
-function compareCountries(){
+function getDirection (lat1, lon1, lat2, lon2){
     let North = "⬆️";
     let East = "➡️";
     let West = "⬅️";
@@ -51,37 +46,48 @@ function compareCountries(){
     let NorthEast = "↗️";
     let NorthWest = "↖️";
 
-    let errorCount = 0;
+    let directionCalc = [lat1-lat2, lon1-lon2];
 
-    const countryA = country1;
-    for (let errorCount = 0; errorCount<5 ; errorCount++) {
-        let countryB = prompt("Adivina el pais, tus opciones son: Argentina, Belgium, Brazil, United Kingdom, Italy")
-        if (countryA.name != countryB){
-            if (countryB === country2.name) {
-                distance = Math.round(getDistance(countryA.latitude, countryA.longitude, country2.latitude, country2.longitude));
-                alert("El pais se encuentra "+distance+"KM mas hacia "+SouthWest);
-            } else if (countryB === country3.name) {
-                distance = Math.round(getDistance(countryA.latitude, countryA.longitude, country3.latitude, country3.longitude));
-                alert("El pais se encuentra "+distance+"KM  mas hacia "+South);
-            } else if (countryB === country4.name) {
-                distance = Math.round(getDistance(countryA.latitude, countryA.longitude, country4.latitude, country4.longitude));
-                alert("El pais se encuentra "+distance+"KM  mas hacia "+SouthWest);
-            } else if (countryB === country5.name) {
-                distance = Math.round(getDistance(countryA.latitude, countryA.longitude, country5.latitude, country5.longitude));
-                alert("El pais se encuentra "+distance+"KM  mas hacia "+SouthWest);
-            } else {
-                alert("Debes ingresar un pais de la lista");
-            }
+    if(directionCalc[0]>0 && directionCalc[1]>0){
+        return NorthEast;
+        } else if(directionCalc[0]<0 && directionCalc[1]>0){
+        return NorthWest;
+        } else if(directionCalc[0]>0 && directionCalc[1]<0){
+        return SouthEast;
+        } else if(directionCalc[0]<0 && directionCalc[1]<0){
+        return SouthWest;
+        } else if(directionCalc[0]>0){
+        return East;
+        } else if(directionCalc[0]<0){
+        return West;
+        } else if(directionCalc[1]<0){
+        return South;
         } else {
-            alert("¡Correcto, el pais a adivinar era Argentina!");
-            break;
-        }
-        // if (errorCount == 5) {
-        //     alert("Has errado 5 veces por lo tanto has perdido la partida, vuelve a intentarlo :)");
-        // }
+        return North;
     }
 }
 
+function compareCountries(){
+    let countryA = countryData[Math.round(Math.random()*countryData.length)];
+    console.log(countryA)
+    for (let errorCount = 0; errorCount<5 ; errorCount++) {
+        let guessCountry = prompt("Adivina el pais, los nombres estan en su mayoria en ingles.");
+        if (guessCountry.toUpperCase() != (countryA.name).toUpperCase()) {
+            let countryB = countryData.find((pais)=>{
+                return pais.name.toUpperCase() == guessCountry.toUpperCase();
+            })
+            if (countryB) {
+                let distance = Math.round(getDistance(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude));
+                let direction = getDirection(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude);
+                alert("El pais a adivinar se encuentra a "+distance+"KM hacia "+direction);
+            } else {
+                alert("El pais ingresado no existe o esta mal escrito")
+            }
+        }
+        if (errorCount == 5) {
+            alert("Has errado 5 veces por lo tanto has perdido la partida, vuelve a intentarlo :)");
+        }
+    }
+}
 compareCountries();
-// let countries = Object.keys(countryData);
-// alert(countries[Math.round(Math.random()*countries.length)])
+

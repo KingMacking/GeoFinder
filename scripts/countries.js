@@ -1,4 +1,4 @@
-export const countryData = {
+export const countryData = [{
         "name": "Andorra",
         "code": "ad",
         "latitude": 42.546245,
