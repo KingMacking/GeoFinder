@@ -46,24 +46,28 @@ function getDirection (lat1, lon1, lat2, lon2){
     let NorthEast = "↗️";
     let NorthWest = "↖️";
 
-    let directionCalc = [lat1-lat2, lon1-lon2];
+    const dLat = lat1 - lat2;
+    const dLon = lon1 - lon2;
+    console.log(lat1 + " | " + lat2);
+    console.log(lon1 + " | " + lon2);
+    console.log(dLat + " | " + dLon);
 
-    if(directionCalc[0]>0 && directionCalc[1]>0){
+    if ((lat1>lat2) && (lon1>lon2)){
         return NorthEast;
-        } else if(directionCalc[0]<0 && directionCalc[1]>0){
-        return NorthWest;
-        } else if(directionCalc[0]>0 && directionCalc[1]<0){
+    } else if ((lat1<lat2) && (lon1>lon2)){
         return SouthEast;
-        } else if(directionCalc[0]<0 && directionCalc[1]<0){
+    } else if ((lat1>lat2) && (lon1<lon2)){
+        return NorthWest;
+    } else if ((lat1<lat2) && (lon1<lon2)){
         return SouthWest;
-        } else if(directionCalc[0]>0){
-        return East;
-        } else if(directionCalc[0]<0){
-        return West;
-        } else if(directionCalc[1]<0){
-        return South;
-        } else {
+    } else if ((lat1>lat2)){
         return North;
+    } else if ((lat1<lat2)){
+        return South;
+    } else if ((lon1<lon2)){
+        return West;
+    } else if ((lon1>lon2)) {
+        return East;
     }
 }
 
@@ -72,6 +76,7 @@ function compareCountries(){
     console.log(countryA)
     for (let errorCount = 0; errorCount<5 ; errorCount++) {
         let guessCountry = prompt("Adivina el pais, los nombres estan en su mayoria en ingles.");
+        console.log(guessCountry);
         if (guessCountry.toUpperCase() != (countryA.name).toUpperCase()) {
             let countryB = countryData.find((pais)=>{
                 return pais.name.toUpperCase() == guessCountry.toUpperCase();
