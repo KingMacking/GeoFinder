@@ -33,7 +33,7 @@ header {
   background-color: #EDF2F4;
   height: 15vh;
   font-family: "PT Sans", sans-serif;
-  font-size: 1.146vw;
+  font-size: 20px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
   z-index: 10;
   position: sticky; }
@@ -49,11 +49,11 @@ header {
     header .navbar .offcanvas {
       background-color: #EDF2F4; }
       header .navbar .offcanvas-header .offcanvas-title {
-        font-size: 1.51vw;
+        font-size: 30px;
         font-family: "Nunito", sans-serif;
         font-weight: 800; }
       header .navbar .offcanvas-body {
-        font-size: 1.146vw;
+        font-size: 20px;
         font-family: "PT Sans", sans-serif;
         height: 60%;
         flex-grow: 0; }
@@ -72,7 +72,7 @@ header {
             border: none;
             background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>"); }
         header .navbar .offcanvas form .form-check-label {
-          font-size: 1.146vw;
+          font-size: 20px;
           line-height: 0.8em; }
           header .navbar .offcanvas form .form-check-label .iconify {
             margin: auto 0; }
@@ -89,11 +89,11 @@ footer {
   position: sticky;
   font-family: "PT Sans", sans-serif; }
   footer ul {
-    font-size: 1.146vw; }
+    font-size: 20px; }
     footer ul li a:hover {
       text-decoration: underline; }
   footer p {
-    font-size: 0.781vw; }
+    font-size: 13px; }
 
 /*VIEWS*/
 .home-main {
@@ -104,30 +104,33 @@ footer {
   padding: 5vh 0; }
   .home-main .container {
     height: 65vh;
-    width: 30vw;
-    padding: 5vh 0 7vh;
+    width: 500px;
+    padding: 2% 0 3%;
     z-index: 10;
     background-color: white;
     border-radius: 5em;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.4); }
     .home-main .container h1 {
-      font-size: 3.385vw; }
+      font-size: 55px; }
     .home-main .container h2 {
-      font-size: 2.344vw; }
+      font-size: 45px; }
     .home-main .container p {
-      font-size: 1.146vw; }
-    .home-main .container .btn {
+      font-size: 20px; }
+    .home-main .container a {
       height: 20%;
-      width: 60%;
-      font-size: 2.344vw;
-      border-radius: 5em;
-      background-color: #D90429;
-      box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
-      transition: all 500ms; }
-      .home-main .container .btn:hover {
-        background-color: #EF233C;
-        transform: scale(1.1);
+      width: 60%; }
+      .home-main .container a .btn {
+        height: 100%;
+        width: 100%;
+        font-size: 45px;
+        border-radius: 2em;
+        background-color: #D90429;
+        box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
         transition: all 500ms; }
+        .home-main .container a .btn:hover {
+          background-color: #EF233C;
+          transform: scale(1.1);
+          transition: all 500ms; }
     .home-main .container .carousel {
       margin-top: 5%;
       height: 15vh; }
