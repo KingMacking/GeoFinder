@@ -49,14 +49,16 @@ header {
     header .navbar .offcanvas {
       background-color: #EDF2F4; }
       header .navbar .offcanvas-header .offcanvas-title {
-        font-size: 30px;
+        font-size: 45px;
         font-family: "Nunito", sans-serif;
         font-weight: 800; }
       header .navbar .offcanvas-body {
-        font-size: 20px;
+        font-size: 30px;
         font-family: "PT Sans", sans-serif;
         height: 60%;
         flex-grow: 0; }
+        header .navbar .offcanvas-body ul li a:hover {
+          text-decoration: underline; }
       header .navbar .offcanvas form {
         margin: 0 auto; }
         header .navbar .offcanvas form .form-check-input {
@@ -72,7 +74,7 @@ header {
             border: none;
             background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>"); }
         header .navbar .offcanvas form .form-check-label {
-          font-size: 20px;
+          font-size: 30px;
           line-height: 0.8em; }
           header .navbar .offcanvas form .form-check-label .iconify {
             margin: auto 0; }
@@ -81,6 +83,13 @@ header {
       height: 15vh; }
       header .navbar__logo img {
         height: 100%; }
+
+#main {
+  background: url("../../img/geofinder/gf-home-background.svg") no-repeat center center fixed;
+  height: 75vh;
+  background-color: #EDF2F4;
+  width: 100vw;
+  padding: 5vh 0; }
 
 footer {
   height: 10vh;
@@ -96,47 +105,107 @@ footer {
     font-size: 13px; }
 
 /*VIEWS*/
-.home-main {
-  background: url("../../img/geofinder/gf-home-background.svg") no-repeat center center fixed;
-  height: 75vh;
-  background-color: #EDF2F4;
-  width: 100vw;
-  padding: 5vh 0; }
-  .home-main .container {
-    height: 65vh;
-    width: 500px;
-    padding: 2% 0 3%;
-    z-index: 10;
-    background-color: white;
-    border-radius: 5em;
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.4); }
-    .home-main .container h1 {
-      font-size: 55px; }
-    .home-main .container h2 {
-      font-size: 45px; }
-    .home-main .container p {
-      font-size: 20px; }
-    .home-main .container a {
-      height: 20%;
-      width: 60%; }
-      .home-main .container a .btn {
-        height: 100%;
-        width: 100%;
-        font-size: 45px;
-        border-radius: 2em;
-        background-color: #D90429;
-        box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
+#main .container {
+  height: 65vh;
+  width: 500px;
+  padding: 2% 0 3%;
+  z-index: 10;
+  background-color: white;
+  border-radius: 5em;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.4); }
+  #main .container h1 {
+    font-size: 55px; }
+  #main .container h2 {
+    font-size: 45px; }
+  #main .container p {
+    font-size: 20px; }
+  #main .container a {
+    height: 20%;
+    width: 60%; }
+    #main .container a .btn {
+      height: 100%;
+      width: 100%;
+      font-size: 45px;
+      border-radius: 2em;
+      background-color: #D90429;
+      box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
+      transition: all 500ms; }
+      #main .container a .btn:hover {
+        background-color: #EF233C;
+        transform: scale(1.1);
         transition: all 500ms; }
-        .home-main .container a .btn:hover {
-          background-color: #EF233C;
-          transform: scale(1.1);
-          transition: all 500ms; }
-    .home-main .container .carousel {
-      margin-top: 5%;
-      height: 15vh; }
-      .home-main .container .carousel-control-prev {
-        left: -15%;
-        top: -25%; }
-      .home-main .container .carousel-control-next {
-        right: -15%;
-        top: -25%; }
+  #main .container .carousel {
+    margin-top: 5%;
+    height: 15vh; }
+    #main .container .carousel-control-prev {
+      left: -15%;
+      top: -25%; }
+    #main .container .carousel-control-next {
+      right: -15%;
+      top: -25%; }
+
+#game-main {
+  background-color: #EDF2F4;
+  max-height: 75vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap; }
+  #game-main .guess-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 30%;
+    height: 75vh;
+    background-color: #EDF2F4;
+    padding: 2em; }
+    #game-main .guess-section .form-control {
+      width: 80%;
+      height: 4vh;
+      border: none;
+      font-size: 20px;
+      padding: 0 3%;
+      background-color: #dadada; }
+    #game-main .guess-section .btn {
+      height: 12%;
+      width: 45%;
+      font-size: 30px;
+      border-radius: 2em;
+      background-color: #D90429;
+      box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
+      transition: all 500ms; }
+      #game-main .guess-section .btn:hover {
+        background-color: #EF233C;
+        transform: scale(1.1);
+        transition: all 500ms; }
+    #game-main .guess-section .guesses {
+      height: auto;
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      flex-wrap: nowrap; }
+      #game-main .guess-section .guesses .guess {
+        height: 4vh;
+        width: 100%;
+        font-size: 20px;
+        padding: 0 3%;
+        margin-bottom: 1vh;
+        background-color: #dadada; }
+  #game-main .image-section {
+    width: 75%;
+    height: 100%; }
+    #game-main .image-section .carousel .carousel-inner .carousel-item img {
+      height: 75vh; }
+
+#main .profile-card__title {
+  border-bottom: 1px solid #161A1D;
+  margin: 0 3%; }
+
+#main .profile-card__info .profile-card__me .profile-card__avatar img {
+  border: 3px solid #161A1D; }

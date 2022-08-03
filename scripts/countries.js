@@ -401,7 +401,7 @@ export const countryData = [{
         "longitude": 179.414413
     },
     {
-        "name":"Falkland Islands (Malvinas)",
+        "name":"Falkland Islands",
         "code": "fk",
         "latitude": -51.796253,
         "longitude": -59.523613
