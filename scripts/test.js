@@ -74,7 +74,7 @@ function getDirection (lat1, lon1, lat2, lon2){
 function compareCountries(){
     let countryA = countryData[Math.round(Math.random()*countryData.length)];
     console.log(countryA)
-    for (let errorCount = 0; errorCount<5 ; errorCount++) {
+    for (let errorCount = 0; errorCount<6 ; errorCount++) {
         let guessCountry = prompt("Adivina el pais, los nombres estan en su mayoria en ingles.");
         console.log(guessCountry);
         if (guessCountry.toUpperCase() != (countryA.name).toUpperCase()) {
@@ -88,12 +88,11 @@ function compareCountries(){
             } else {
                 alert("El pais ingresado no existe o esta mal escrito")
             }
+        } else if (errorCount == 6) {
+            alert("Has errado 5 veces por lo tanto has perdido la partida, vuelve a intentarlo :)");
         } else {
             alert("¡Muy bien!\nEl pais a adivinar era " + countryA.name);
             break;
-        }
-        if (errorCount == 5) {
-            alert("Has errado 5 veces por lo tanto has perdido la partida, vuelve a intentarlo :)");
         }
     }
 }

@@ -72,13 +72,13 @@
                         <div class="mb-3 row">
                             <label for="loginInputEmail" class="col-sm-2 col-form-label fs-4">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="fs-4 form-control" id="loginInputEmail" placeholder="correo@email.com">
+                                <input type="email" class="fs-4 form-control fs-2 px-3" id="loginInputEmail" placeholder="correo@email.com">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="loginInputPassword" class="col-sm-2 col-form-label fs-4">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="fs-4 form-control" id="loginInputPassword">
+                                <input type="password" class="fs-4 form-control fs-2 px-3" id="loginInputPassword">
                             </div>
                         </div>
                     </div>
@@ -100,31 +100,31 @@
                         <div class="mb-3 row">
                             <label for="registerInputName" class="col-sm-4 col-form-label fs-4">Nombre completo</label>
                             <div class="col-sm-8">
-                                <input type="text" class="fs-4 form-control" id="registerInputName" placeholder="Nombre Apellido">
+                                <input type="text" class="fs-4 form-control fs-2 px-3" id="registerInputName" placeholder="Nombre Apellido">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="registerInputUser" class="col-sm-4 col-form-label fs-4">Usuario</label>
                             <div class="col-sm-8">
-                                <input type="text" class="fs-4 form-control" id="registerInputUser" placeholder="Usuario">
+                                <input type="text" class="fs-4 form-control fs-2 px-3" id="registerInputUser" placeholder="Usuario">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="registerInputEmail" class="col-sm-4 col-form-label fs-4">Email</label>
                             <div class="col-sm-8">
-                                <input type="email" class="fs-4 form-control" id="registerInputEmail" placeholder="correo@email.com">
+                                <input type="email" class="fs-4 form-control fs-2 px-3" id="registerInputEmail" placeholder="correo@email.com">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="registerInputEmail" class="col-sm-4 col-form-label fs-4">Repetir Email</label>
+                            <label for="registerInputRepeatEmail" class="col-sm-4 col-form-label fs-4">Repetir Email</label>
                             <div class="col-sm-8">
-                                <input type="email" class="fs-4 form-control" id="registerInputEmail" placeholder="correo@email.com">
+                                <input type="email" class="fs-4 form-control fs-2 px-3" id="registerInputRepeatEmail" placeholder="correo@email.com">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="registerInputPassword" class="col-sm-4 col-form-label fs-4">Password</label>
                             <div class="col-sm-8">
-                                <input type="password" class="fs-4 form-control" id="registerInputPassword">
+                                <input type="password" class="fs-4 form-control fs-2 px-3" id="registerInputPassword">
                             </div>
                         </div>
                     </div>
@@ -136,6 +136,35 @@
             </div>
         </div>
         <!-- Register & Login Modals -->
+        <div class="container w-50 p-4 h-auto">
+            <h2 class="text-center fw-bold mb-5">FORMULARIO DE CONTACTO</h2>
+            <form class="row g-3 fs-2 px-5">
+                <div class="col-md-6">
+                    <label for="inputName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control fs-2 px-3" id="inputName" placeholder="Juan">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputLname" class="form-label">Apellido</label>
+                    <input type="text" class="form-control fs-2 px-3" id="inputLname" placeholder="Perez">
+                </div>
+                <div class="col-12">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control fs-2 px-3" id="inputEmail" placeholder="geo@finder.com">
+                </div>
+                <div class="col-12">
+                    <label for="inputSubject" class="form-label">Asunto</label>
+                    <input type="text" class="form-control fs-2 px-3" id="inputSubject" placeholder="Encontre un bug en la interfaz">
+                </div>
+                <div class="col-12">
+                    <label for="inputMessage" class="form-label">Mensaje</label>
+                    <textarea class="form-control fs-4" name="message" id="inputMessage" cols="30" rows="6"></textarea>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-danger fs-2">Enviar</button>
+                    <button type="reset" class="btn btn-secondary fs-2">Resetear</button>
+                </div>
+            </form>
+        </div>
     </main>
     <footer class="d-flex justify-content-center flex-column align-items-center">
         <ul class="list-unstyled d-flex align-items-center">

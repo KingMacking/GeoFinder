@@ -24,6 +24,11 @@ h1, h2, h3, h4, h5, h6 {
 p {
   font-family: "PT Sans", sans-serif; }
 
+.btn-danger {
+  background-color: #D90429; }
+  .btn-danger:hover {
+    background-color: #EF233C; }
+
 /*FLEX*/
 /*TEXT SHORTENING*/
 /*MEDIA QUERIES*/
@@ -86,7 +91,7 @@ header {
 
 #main {
   background: url("../../img/geofinder/gf-home-background.svg") no-repeat center center fixed;
-  height: 75vh;
+  min-height: 75vh;
   background-color: #EDF2F4;
   width: 100vw;
   padding: 5vh 0; }
