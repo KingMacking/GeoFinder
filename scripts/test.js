@@ -1,34 +1,10 @@
 import {countryData} from './countries.js'
-//Constructor de paises del juego
-// class Country {
-//     constructor(name, latitude, longitude, code) {
-//         this.name = name;
-//         this.latitude = latitude;
-//         this.longitude = longitude;
-//         this.code = code;
-//     }
-
-//     getName(){
-//         console.log(this.name);
-//     }
-//     getLatitude(){
-//         console.log(this.latitude);
-//     }
-//     getLongitude(){
-//         console.log(this.longitude);
-//     }
-//     getCode(){
-//         console.log(this.code);
-//     }
-// }
-
-
-
 
 //-----Variables-----
 const guess = document.querySelectorAll(".guess");
 const guessButton = document.querySelector("#btnGuess");
 const countrySelect = document.querySelector("#countrySelect");
+const guesses = document.querySelector("#guesses");
 
 let guessNumber = 0
 let countryA = countryData[Math.round(Math.random()*countryData.length)];
@@ -71,10 +47,18 @@ function compareCountries(){
             guess[guessNumber].innerText = "El pais a adivinar se encuentra a "+distance+"KM hacia "+direction;
             guessNumber++;
         } else {
-            alert("Debes elegir un pais")
+            guess[guessNumber].innerText="Debes elegir un pais";
         }
     } else {
         guess[guessNumber].innerText = "¡Muy bien! El pais a adivinar era " + countryA.name
+        guess[guessNumber].classList.add("win");
+    }
+    if (guessNumber==6){
+        guessButton.disabled = true;
+        let loseAlert = document.createElement("div");
+        loseAlert.innerText = `¡Has perdido! El pais a adivinar era ${countryA.name.toUpperCase()}`
+        loseAlert.classList.add("guess", "p-3", "text-center", "lose", "mt-4");
+        guesses.appendChild(loseAlert);
     }
 }
 

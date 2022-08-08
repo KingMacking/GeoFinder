@@ -36,6 +36,14 @@ body.dark-mode .modal-content {
 /*FLEX*/
 /*TEXT SHORTENING*/
 /*MEDIA QUERIES*/
+.win {
+  background-color: #336e37 !important;
+  color: #EDF2F4; }
+
+.lose {
+  background-color: #D90429 !important;
+  color: #0B090A; }
+
 /*PARTIALS*/
 /*HEADER*/
 header {
