@@ -52,6 +52,7 @@ function compareCountries(){
     } else {
         guess[guessNumber].innerText = "¡Muy bien! El pais a adivinar era " + countryA.name
         guess[guessNumber].classList.add("win", "fw-bold");
+        guessButton.disabled = true;
     }
     if (guessNumber==6){
         guessButton.disabled = true;
