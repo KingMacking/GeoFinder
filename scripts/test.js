@@ -22,20 +22,63 @@ import {countryData} from './countries.js'
 //     }
 // }
 
-//Obtain distance between centers of countries
-function getDistance (lat1, lon1, lat2, lon2) {
-    const toRad = function (x) {return x*Math.PI/180};
-    let R = 6378.137; //Earth radius
-    let dLat = toRad(lat2-lat1);
-    let dLong = toRad(lon2-lon1);
-    let a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLong/2)*Math.sin(dLong/2);
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-    //Obtain distance in KM
-    let d = R * c;
-    return d;
+
+
+//-----Variables-----
+const guess = document.querySelectorAll(".guess");
+const guessButton = document.querySelector("#btnGuess");
+const countrySelect = document.querySelector("#countrySelect");
+
+let guessNumber = 0
+let countryA = countryData[Math.round(Math.random()*countryData.length)];
+console.log(countryA);
+
+//-----Events-----
+guessButton.addEventListener("click", compareCountries);
+
+//-----Functions-----
+
+//Add all countries to selection options
+function addCountriesOptions(){
+    for(const country of countryData){
+        let option = document.createElement("option");
+        option.value = `${country.name.toUpperCase()}`;
+        option.innerHTML = `${country.name.toUpperCase()}`;
+        countrySelect.appendChild(option);
+    }
+}
+addCountriesOptions();
+
+//Obtain selected country
+function getSelectedCountry(){
+    let guessOption = document.querySelector("#countrySelect").value;
+    console.log(guessOption);
+    return guessOption;
 }
 
+//Compare countries to obtain data
+function compareCountries(){
+    let guessCountry = getSelectedCountry();
+    console.log(guessCountry);
+    if (guessCountry.toUpperCase() != (countryA.name).toUpperCase()) {
+        let countryB = countryData.find((pais)=>{
+            return pais.name.toUpperCase() == guessCountry.toUpperCase();
+        })
+        if (countryB) {
+            let distance = Math.round(getDistance(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude));
+            let direction = getDirection(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude);
+            guess[guessNumber].innerText = "El pais a adivinar se encuentra a "+distance+"KM hacia "+direction;
+            guessNumber++;
+        } else {
+            alert("Debes elegir un pais")
+        }
+    } else {
+        guess[guessNumber].innerText = "¡Muy bien! El pais a adivinar era " + countryA.name
+    }
+}
+
+//Get direction between countries
 function getDirection (lat1, lon1, lat2, lon2){
     let North = "⬆️";
     let East = "➡️";
@@ -71,29 +114,16 @@ function getDirection (lat1, lon1, lat2, lon2){
     }
 }
 
-function compareCountries(){
-    let countryA = countryData[Math.round(Math.random()*countryData.length)];
-    console.log(countryA)
-    for (let errorCount = 0; errorCount<6 ; errorCount++) {
-        let guessCountry = prompt("Adivina el pais, los nombres estan en su mayoria en ingles.");
-        console.log(guessCountry);
-        if (guessCountry.toUpperCase() != (countryA.name).toUpperCase()) {
-            let countryB = countryData.find((pais)=>{
-                return pais.name.toUpperCase() == guessCountry.toUpperCase();
-            })
-            if (countryB) {
-                let distance = Math.round(getDistance(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude));
-                let direction = getDirection(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude);
-                alert("El pais a adivinar se encuentra a "+distance+"KM hacia "+direction);
-            } else {
-                alert("El pais ingresado no existe o esta mal escrito")
-            }
-        } else if (errorCount == 6) {
-            alert("Has errado 5 veces por lo tanto has perdido la partida, vuelve a intentarlo :)");
-        } else {
-            alert("¡Muy bien!\nEl pais a adivinar era " + countryA.name);
-            break;
-        }
-    }
+//Obtain distance between centers of countries
+function getDistance (lat1, lon1, lat2, lon2) {
+    const toRad = function (x) {return x*Math.PI/180};
+    let R = 6378.137; //Earth radius
+    let dLat = toRad(lat2-lat1);
+    let dLong = toRad(lon2-lon1);
+    let a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLong/2)*Math.sin(dLong/2);
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    //Obtain distance in KM
+    let d = R * c;
+    return d;
 }
-compareCountries();

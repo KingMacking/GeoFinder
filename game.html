@@ -141,15 +141,17 @@
                 <img class="w-100" src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg" alt="">
             </div>
             <div class="guesses">
-                <div class="guess text-center">a</div>
-                <div class="guess text-center">a</div>
-                <div class="guess text-center">a</div>
-                <div class="guess text-center">a</div>
-                <div class="guess text-center">a</div>
-                <div class="guess text-center">a</div>
+                <div class="guess text-center p-3" id="guess"></div>
+                <div class="guess text-center p-3" id="guess"></div>
+                <div class="guess text-center p-3" id="guess"></div>
+                <div class="guess text-center p-3" id="guess"></div>
+                <div class="guess text-center p-3" id="guess"></div>
+                <div class="guess text-center p-3" id="guess"></div>
             </div>
-            <input class="form-control" type="text" placeholder="Pais, Territorios..." aria-label="Guess input">
-            <button class="btn btn-danger">ADIVINAR</button>
+            <select class="form-select text-center" id="countrySelect" aria-label="Default select example">
+                <option selected>Seleccione el país</option>
+            </select>
+            <button class="btn btn-danger" id="btnGuess">ADIVINAR</button>
         </div>
         <div class="image-section">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -193,5 +195,6 @@
         <p>© 2022 GeoFinder Todos los derechos reservados.</p>
     </footer>
     <script type="module" src="../scripts/test.js"></script>
+    <script src="./scripts/darkmode.js"></script>
 </body>
 </html> 

@@ -239,7 +239,7 @@ export const countryData = [{
         "longitude": 8.227512
     },
     {
-        "name":"Côte d'Ivoire",
+        "name":"Costa de Marfil",
         "code": "ci",
         "latitude": 7.539989,
         "longitude": -5.54708

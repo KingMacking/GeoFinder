@@ -29,6 +29,10 @@ p {
   .btn-danger:hover {
     background-color: #EF233C; }
 
+body.dark-mode .modal-content {
+  background-color: #161A1D;
+  color: #EDF2F4; }
+
 /*FLEX*/
 /*TEXT SHORTENING*/
 /*MEDIA QUERIES*/
@@ -51,6 +55,9 @@ header {
     padding: 0 1.2em; }
     header .navbar .btn .iconify {
       font-size: 5em; }
+      body.dark-mode header .navbar .btn .iconify {
+        background-color: #161A1D;
+        color: #EDF2F4; }
     header .navbar .offcanvas {
       background-color: #EDF2F4; }
       header .navbar .offcanvas-header .offcanvas-title {
@@ -83,11 +90,17 @@ header {
           line-height: 0.8em; }
           header .navbar .offcanvas form .form-check-label .iconify {
             margin: auto 0; }
+      body.dark-mode header .navbar .offcanvas {
+        background-color: #161A1D;
+        color: #EDF2F4; }
     header .navbar__logo {
       margin: 0;
       height: 15vh; }
       header .navbar__logo img {
         height: 100%; }
+  body.dark-mode header {
+    background-color: #161A1D;
+    color: #EDF2F4; }
 
 #main {
   background: url("../../img/geofinder/gf-home-background.svg") no-repeat center center fixed;
@@ -95,6 +108,9 @@ header {
   background-color: #EDF2F4;
   width: 100vw;
   padding: 5vh 0; }
+  body.dark-mode #main {
+    background-color: #0B090A;
+    color: #EDF2F4; }
 
 footer {
   height: 10vh;
@@ -108,6 +124,9 @@ footer {
       text-decoration: underline; }
   footer p {
     font-size: 13px; }
+  body.dark-mode footer {
+    background-color: #161A1D;
+    color: #EDF2F4; }
 
 /*VIEWS*/
 #main .container {
@@ -148,6 +167,13 @@ footer {
     #main .container .carousel-control-next {
       right: -15%;
       top: -25%; }
+  body.dark-mode #main .container {
+    background-color: #161A1D;
+    color: #EDF2F4; }
+
+body.dark-mode #main {
+  background-color: #0B090A;
+  color: #EDF2F4; }
 
 #game-main {
   background-color: #EDF2F4;
@@ -198,15 +224,34 @@ footer {
       #game-main .guess-section .guesses .guess {
         height: 4vh;
         width: 100%;
-        font-size: 20px;
+        font-size: 13px;
         padding: 0 3%;
         margin-bottom: 1vh;
         background-color: #dadada; }
+        body.dark-mode #game-main .guess-section .guesses .guess {
+          background-color: #161A1D;
+          color: #EDF2F4; }
+    #game-main .guess-section .form-select {
+      height: 4vh;
+      width: 80%;
+      margin: 0;
+      font-size: 13px;
+      padding: 0 3%;
+      background-color: #dadada; }
+      body.dark-mode #game-main .guess-section .form-select {
+        background-color: #161A1D;
+        color: #EDF2F4; }
+    body.dark-mode #game-main .guess-section {
+      background-color: #0B090A;
+      color: #EDF2F4; }
   #game-main .image-section {
     width: 75%;
     height: 100%; }
     #game-main .image-section .carousel .carousel-inner .carousel-item img {
       height: 75vh; }
+  body.dark-mode #game-main {
+    background-color: #0B090A;
+    color: #EDF2F4; }
 
 #main .profile-card__title {
   border-bottom: 1px solid #161A1D;
@@ -214,3 +259,15 @@ footer {
 
 #main .profile-card__info .profile-card__me .profile-card__avatar img {
   border: 3px solid #161A1D; }
+
+body.dark-mode #main {
+  background-color: #0B090A;
+  color: #EDF2F4; }
+
+body.dark-mode #main {
+  background-color: #0B090A;
+  color: #EDF2F4; }
+
+body.dark-mode #main {
+  background-color: #0B090A;
+  color: #EDF2F4; }
