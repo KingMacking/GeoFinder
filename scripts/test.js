@@ -51,13 +51,13 @@ function compareCountries(){
         }
     } else {
         guess[guessNumber].innerText = "¡Muy bien! El pais a adivinar era " + countryA.name
-        guess[guessNumber].classList.add("win");
+        guess[guessNumber].classList.add("win", "fw-bold");
     }
     if (guessNumber==6){
         guessButton.disabled = true;
         let loseAlert = document.createElement("div");
         loseAlert.innerText = `¡Has perdido! El pais a adivinar era ${countryA.name.toUpperCase()}`
-        loseAlert.classList.add("guess", "p-3", "text-center", "lose", "mt-4");
+        loseAlert.classList.add("guess", "p-3", "text-center", "lose", "mt-4", "fw-bold", "h-auto");
         guesses.appendChild(loseAlert);
     }
 }
