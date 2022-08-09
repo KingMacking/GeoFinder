@@ -5,6 +5,7 @@ const guess = document.querySelectorAll(".guess");
 const guessButton = document.querySelector("#btnGuess");
 const countrySelect = document.querySelector("#countrySelect");
 const guesses = document.querySelector("#guesses");
+const flag = document.querySelector("#flag-image")
 
 let guessNumber = 0
 let countryA = countryData[Math.round(Math.random()*countryData.length)];
@@ -53,6 +54,7 @@ function compareCountries(){
         guess[guessNumber].innerText = "¡Muy bien! El pais a adivinar era " + countryA.name
         guess[guessNumber].classList.add("win", "fw-bold");
         guessButton.disabled = true;
+        flag.src = `https://flagcdn.com/${countryA.code}.svg`
     }
     if (guessNumber==6){
         guessButton.disabled = true;
@@ -60,6 +62,7 @@ function compareCountries(){
         loseAlert.innerText = `¡Has perdido! El pais a adivinar era ${countryA.name.toUpperCase()}`
         loseAlert.classList.add("guess", "p-3", "text-center", "lose", "mt-4", "fw-bold", "h-auto");
         guesses.appendChild(loseAlert);
+        flag.src = `https://flagcdn.com/${countryA.code}.svg`
     }
 }
 
@@ -111,4 +114,9 @@ function getDistance (lat1, lon1, lat2, lon2) {
     //Obtain distance in KM
     let d = R * c;
     return d;
+}
+
+//Replace incognito flag with country flag
+function replaceFlag (){
+
 }
