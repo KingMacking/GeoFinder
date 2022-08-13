@@ -37,12 +37,20 @@ body.dark-mode .modal-content {
 /*TEXT SHORTENING*/
 /*MEDIA QUERIES*/
 .win {
-  background-color: #336e37 !important;
+  background-color: #38943e !important;
   color: #EDF2F4; }
 
 .lose {
   background-color: #D90429 !important;
   color: #EDF2F4; }
+
+#variable-text .cls-4 {
+  fill: #1d1d1b; }
+  body.dark-mode #variable-text .cls-4 {
+    fill: #EDF2F4; }
+
+* {
+  transition: all 100ms; }
 
 /*PARTIALS*/
 /*HEADER*/
@@ -104,7 +112,7 @@ header {
     header .navbar__logo {
       margin: 0;
       height: 15vh; }
-      header .navbar__logo img {
+      header .navbar__logo svg {
         height: 100%; }
   body.dark-mode header {
     background-color: #161A1D;
