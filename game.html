@@ -140,10 +140,28 @@
             </div>
         </div>
         <!-- Register & Login Modals -->
-        <div class="guess-section">
+        <!-- Stats modal -->
+        <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="statsModalLabel">ESTADISTICAS</h2>
+                    </div>
+                    <div class="modal-body d-flex flex-column" id="stats-modal-body">
+                        <!-- Stats obtained from JS -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="fs-4 btn btn-secondary" data-bs-dismiss="modal" id="close-stats-modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Stats modal -->
+        <div class="guess-section position-relative">
             <div class="flag-guess w-50" id="flag-guess">
                 <img class="w-100" src="./img/geofinder/incgnito-flag.svg" alt="" id="flag-image">
             </div>
+            <a class="position-absolute stats-icon" href="#statsModal" data-bs-toggle="modal" id="stats-button"><span class="iconify-inline fs-1" data-icon="ic:outline-bar-chart"></span></a>
             <div class="guesses" id="guesses">
                 <div class="guess text-center p-3" id="guess"></div>
                 <div class="guess text-center p-3" id="guess"></div>

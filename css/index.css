@@ -210,6 +210,10 @@ body.dark-mode #main {
     height: 75vh;
     background-color: #EDF2F4;
     padding: 2em; }
+    #game-main .guess-section .flag-guess {
+      max-height: 20%; }
+      #game-main .guess-section .flag-guess img {
+        height: 100%; }
     #game-main .guess-section .form-control {
       width: 80%;
       height: 4vh;
@@ -257,6 +261,9 @@ body.dark-mode #main {
       body.dark-mode #game-main .guess-section .form-select {
         background-color: #161A1D;
         color: #EDF2F4; }
+    #game-main .guess-section .stats-icon {
+      top: 5%;
+      left: 5%; }
     body.dark-mode #game-main .guess-section {
       background-color: #0B090A;
       color: #EDF2F4; }
