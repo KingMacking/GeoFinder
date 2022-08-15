@@ -1,5 +1,4 @@
 import {countryData} from './countries.js';
-import {getStatsData} from './stats.js';
 
 //-----Variables-----
 const guess = document.querySelectorAll(".guess");
@@ -19,7 +18,6 @@ console.log(countryA);
 //-----Events-----
 guessButton.addEventListener("click", compareCountries);
 statsButtonOpen.addEventListener("click", showStatsModal);
-statsButtonClose.addEventListener("click", clearModalStats);
 
 //-----Functions-----
 
@@ -184,6 +182,7 @@ function updateStats(updatedStats){
 
 //Get stats to show on modal
 function showStatsModal(){
+    statsModalBody.innerHTML = ``
     let guessStats = document.createElement("div");
     let guessDistributionStats = document.createElement("div");
     let winPercentage = Math.round((storedStats.winCount/storedStats.playedCount)*100)
@@ -199,14 +198,9 @@ function showStatsModal(){
                                         <p><span>3: </span><span>${storedStats.guessDistribution[3]}</span></p>
                                         <p><span>4: </span><span>${storedStats.guessDistribution[4]}</span></p>
                                         <p><span>5: </span><span>${storedStats.guessDistribution[5]}</span></p>
-                                        <p><span>6: </span><span>${storedStats.guessDistribution[6]}</span></p>`
-    guessDistributionStats.classList.add("fs-3", "border-top", "py-3")
-    statsModalBody.classList.add("p-5")
-    statsModalBody.appendChild(guessStats)
-    statsModalBody.appendChild(guessDistributionStats)
-}
-
-//Clear stats in modal to update them
-function clearModalStats(){
-    statsModalBody.innerHTML = ``
+                                        <p><span>6: </span><span>${storedStats.guessDistribution[6]}</span></p>`;
+    guessDistributionStats.classList.add("fs-3", "border-top", "py-3");
+    statsModalBody.classList.add("p-5");
+    statsModalBody.appendChild(guessStats);
+    statsModalBody.appendChild(guessDistributionStats);
 }
