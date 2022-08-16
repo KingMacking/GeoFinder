@@ -12,7 +12,6 @@ const statsButtonClose = document.querySelector("#close-stats-modal")
 
 let guessNumber = 0
 let countryA = countryData[Math.round(Math.random()*countryData.length)];
-let storedStats = JSON.parse(localStorage.getItem("stats"));
 console.log(countryA);
 
 //-----Events-----
@@ -159,6 +158,7 @@ let userStats = {
 //-----Stats-----
 //Update stats
 function updateStats(updatedStats){
+    let storedStats = JSON.parse(localStorage.getItem("stats"));
     console.log(storedStats);
     if (storedStats != null){
         if(updatedStats.currentStreak != 0){
@@ -183,6 +183,7 @@ function updateStats(updatedStats){
 //Get stats to show on modal
 function showStatsModal(){
     statsModalBody.innerHTML = ``
+    let storedStats = JSON.parse(localStorage.getItem("stats"));
     let guessStats = document.createElement("div");
     let guessDistributionStats = document.createElement("div");
     let winPercentage = Math.round((storedStats.winCount/storedStats.playedCount)*100)
