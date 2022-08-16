@@ -179,6 +179,7 @@ function updateStats(updatedStats){
         localStorage.setItem("stats", JSON.stringify(userStats));
     }
 }
+updateStats(userStats);
 
 //Get stats to show on modal
 function showStatsModal(){
