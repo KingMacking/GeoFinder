@@ -19,21 +19,14 @@ export let userStats = {
 //Update stats
 export function updateStats(updatedStats){
     let storedStats = JSON.parse(localStorage.getItem("stats"));
-    console.log(storedStats);
     if (storedStats != null){
-        if(updatedStats.currentStreak != 0){
-            storedStats.currentStreak += updatedStats.currentStreak;
-        } else {
-            storedStats.currentStreak = 0;
-        }
+        updatedStats.currentStreak !== 0 ? (storedStats.currentStreak += updatedStats.currentStreak) : (storedStats.currentStreak === 0);
         storedStats.winCount += updatedStats.winCount;
         storedStats.playedCount += updatedStats.playedCount;
         for (let guessTry in storedStats.guessDistribution){
             storedStats.guessDistribution[guessTry] += updatedStats.guessDistribution[guessTry];
         }
-        if (storedStats.currentStreak >= storedStats.maxStreak){
-            storedStats.maxStreak = storedStats.currentStreak;
-        }
+        storedStats.currentStreak >= storedStats.maxStreak && (storedStats.maxStreak = storedStats.currentStreak);
         localStorage.setItem("stats", JSON.stringify(storedStats));
     }else {
         localStorage.setItem("stats", JSON.stringify(userStats));
@@ -47,7 +40,7 @@ export function showStatsModal(){
     let storedStats = JSON.parse(localStorage.getItem("stats"));
     let guessStats = document.createElement("div");
     let guessDistributionStats = document.createElement("div");
-    let winPercentage = Math.round((storedStats.winCount/storedStats.playedCount)*100)
+    let winPercentage = Math.round((storedStats.winCount/storedStats.playedCount)*100) || 0;
     guessStats.innerHTML = `<div class="text-center fs-3"><p class="fw-bolder">${storedStats.currentStreak}</p><p>Racha</p></div>
                             <div class="text-center fs-3"><p class="fw-bolder">${storedStats.maxStreak}</p><p>Mejor racha</p></div>
                             <div class="text-center fs-3"><p class="fw-bolder">${storedStats.winCount}</p><p></p>Ganadas</div>

@@ -1,13 +1,34 @@
 import {countryData} from './countries.js';
 import {userStats, updateStats, showStatsModal} from './stats.js';
+// import {getCompassDirection} from '../node_modules/geolib/es/getCompassDirection.js';
+// console.log(getCompassDirection)
+// const geolib = require('geolib');
 
 //-----Variables-----
 const guess = document.querySelectorAll(".guess");
 const guessButton = document.querySelector("#btnGuess");
 const countrySelect = document.querySelector("#countrySelect");
-const guesses = document.querySelector("#guesses");
 const flag = document.querySelector("#flag-image");
 const statsButtonOpen = document.querySelector("#stats-button");
+const arrowDirections = {
+    N: "⬆️",
+    NNE: "↗️",
+    NE: "↗️",
+    ENE: "↗️",
+    E: "➡️",
+    ESE: "↘️",
+    SE: "↘️",
+    SSE: "↘️",
+    S: "⬇️",
+    SSW: "↙️",
+    SW: "↙️",
+    WSW: "↙️",
+    W: "⬅️",
+    WNW: "↖️",
+    NW: "↖️",
+    NNW: "↖️",
+}
+// const geolib = require('geolib');
 
 let guessNumber = 0
 let countryA = countryData[Math.round(Math.random()*countryData.length)];
@@ -33,25 +54,39 @@ addCountriesOptions();
 //Obtain selected country
 function getSelectedCountry(){
     let guessOption = document.querySelector("#countrySelect").value;
-    console.log(guessOption);
     return guessOption;
 }
 
 //Compare countries to obtain data
 function compareCountries(){
     let guessCountry = getSelectedCountry();
-    console.log(guessCountry);
-    if (guessCountry.toUpperCase() != (countryA.name).toUpperCase()) {
+    if (guessCountry.toUpperCase() !== (countryA.name).toUpperCase()) {
         let countryB = countryData.find((pais)=>{
-            return pais.name.toUpperCase() == guessCountry.toUpperCase();
+            return pais.name.toUpperCase() === guessCountry.toUpperCase();
         })
         if (countryB) {
             let distance = Math.round(getDistance(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude));
-            let direction = getDirection(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude);
-            guess[guessNumber].innerText = "El pais a adivinar se encuentra a "+distance+"KM hacia "+direction;
+            let geolibDirection = geolib.getCompassDirection(
+                { latitude: (countryB.latitude), longitude: (countryB.longitude) },
+                { latitude: (countryA.latitude), longitude: (countryA.longitude) }
+            );
+            guess[guessNumber].innerText = "El pais a adivinar se encuentra a "+distance+"KM hacia "+arrowDirections[geolibDirection];
             guessNumber++;
         } else {
-            guess[guessNumber].innerText="Debes elegir un pais";
+            Swal.fire({
+                title: "ELIGE UN PAÍS",
+                text:`Debes elegir un país para jugar`,
+                confirmButtonText: "Entiendo",
+                confirmButtonColor: "#D90429",
+                customClass: {
+                    title: "fs-1 fw-bold",
+                    htmlContainer: "fs-2",
+                    confirmButton: "btn btn-danger fs-2"
+                },
+                icon: "warning",
+                background: (currentTheme === "dark" ? "#161A1D" : "#fff"),
+                color: (currentTheme === "dark" ? "#EDF2F4" : "#161A1D")
+            })
         }
     } else {
         sendAlert("win");
@@ -60,53 +95,15 @@ function compareCountries(){
         userStats.currentStreak++;
         userStats.playedCount++;
         userStats.winCount++;
-        // saveLocal("stats", JSON.stringify(userStats));
-        updateStats(userStats);
-        // localStorage.removeItem("stats");
-    }
-    if (guessNumber==6){
-        sendAlert("lose");
-        userStats.currentStreak = 0;
-        userStats.playedCount++;
-        // saveLocal("stats", JSON.stringify(userStats));
         updateStats(userStats);
     }
-}
+    guessNumber === 6 ? 
+        (sendAlert("lose"), 
+        userStats.currentStreak = 0, 
+        userStats.playedCount++, 
+        updateStats(userStats)) : null;
 
-//Get direction between countries
-function getDirection (lat1, lon1, lat2, lon2){
-    let North = "⬆️";
-    let East = "➡️";
-    let West = "⬅️";
-    let South = "⬇️";
-    let SouthEast = "↘️";
-    let SouthWest = "↙️";
-    let NorthEast = "↗️";
-    let NorthWest = "↖️";
-
-    const dLat = lat1 - lat2;
-    const dLon = lon1 - lon2;
-    console.log(lat1 + " | " + lat2);
-    console.log(lon1 + " | " + lon2);
-    console.log(dLat + " | " + dLon);
-
-    if ((lat1>lat2) && (lon1>lon2)){
-        return NorthEast;
-    } else if ((lat1<lat2) && (lon1>lon2)){
-        return SouthEast;
-    } else if ((lat1>lat2) && (lon1<lon2)){
-        return NorthWest;
-    } else if ((lat1<lat2) && (lon1<lon2)){
-        return SouthWest;
-    } else if ((lat1>lat2)){
-        return North;
-    } else if ((lat1<lat2)){
-        return South;
-    } else if ((lon1<lon2)){
-        return West;
-    } else if ((lon1>lon2)) {
-        return East;
-    }
+    
 }
 
 //Obtain distance between centers of countries
@@ -125,14 +122,55 @@ function getDistance (lat1, lon1, lat2, lon2) {
 
 //Win & Lose alerts
 function sendAlert(alertType){
-    if (alertType == "win"){
-        guess[guessNumber].innerText = "¡Muy bien! El pais a adivinar era " + countryA.name;
+    if (alertType === "win"){
+        guess[guessNumber].innerText = countryA.name;
         guess[guessNumber].classList.add("win", "fw-bold");
-    } else if (alertType == "lose"){
-        let loseAlert = document.createElement("div");
-        loseAlert.innerText = `¡Has perdido! El pais a adivinar era ${countryA.name.toUpperCase()}`;
-        loseAlert.classList.add("guess", "p-3", "text-center", "lose", "mt-4", "fw-bold", "h-auto");
-        guesses.appendChild(loseAlert);
+        Swal.fire({
+            title: "¡MUY BIEN!",
+            text:`El pais a adivinar era ${countryA.name.toUpperCase()}`,
+            imageUrl: `https://flagcdn.com/${countryA.code}.svg`,
+            imageWidth: "60%",
+            imageHeight: "80%",
+            showCancelButton: true,
+            cancelButtonText: "Cerrar",
+            confirmButtonText: "Volver a jugar",
+            confirmButtonColor: "#D90429",
+            customClass: {
+                title: "fs-1 fw-bold",
+                htmlContainer: "fs-2",
+                confirmButton: "btn btn-danger fs-2",
+                cancelButton: "btn btn-secondary fs-2",
+                image: "border-dark"
+            },
+            icon: "success",
+            background: (currentTheme === "dark" ? "#161A1D" : "#fff"),
+            color: (currentTheme === "dark" ? "#EDF2F4" : "#161A1D")
+        }).then((result) =>{
+            result.isConfirmed && location.reload();
+        })
+    } else if (alertType === "lose"){
+        Swal.fire({
+            title: "¡HAS PERDIDO!",
+            text:`El pais a adivinar era ${countryA.name.toUpperCase()}`,
+            imageUrl: `https://flagcdn.com/${countryA.code}.svg`,
+            imageWidth: "60%",
+            imageHeight: "80%",
+            showCancelButton: true,
+            cancelButtonText: "Cerrar",
+            confirmButtonText: "Volver a jugar",
+            confirmButtonColor: "#D90429",
+            customClass: {
+                title: "fs-1 fw-bold",
+                htmlContainer: "fs-2",
+                confirmButton: "btn btn-danger fs-2",
+                cancelButton: "btn btn-secondary fs-2"
+            },
+            icon: "error",
+            background: (currentTheme === "dark" ? "#161A1D" : "#fff"),
+            color: (currentTheme === "dark" ? "#EDF2F4" : "#161A1D")
+        }).then((result) =>{
+            result.isConfirmed && location.reload();
+        })
     }
     flag.src = `https://flagcdn.com/${countryA.code}.svg`;
     guessButton.disabled = true;
