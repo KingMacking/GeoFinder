@@ -1,8 +1,7 @@
 import {countryData} from './countries.js';
 import {userStats, updateStats, showStatsModal} from './stats.js';
-// import {getCompassDirection} from '../node_modules/geolib/es/getCompassDirection.js';
-// console.log(getCompassDirection)
-// const geolib = require('geolib');
+import { getCountryImages } from './hooks.js';
+import { makeItRain } from './hooks.js';
 
 //-----Variables-----
 const guess = document.querySelectorAll(".guess");
@@ -33,6 +32,9 @@ const arrowDirections = {
 let guessNumber = 0
 let countryA = countryData[Math.round(Math.random()*countryData.length)];
 console.log(countryA);
+
+let countryImage = getCountryImages(countryA.name);
+console.log(countryImage)
 
 //-----Events-----
 guessButton.addEventListener("click", compareCountries);
@@ -135,6 +137,7 @@ function sendAlert(alertType){
             cancelButtonText: "Cerrar",
             confirmButtonText: "Volver a jugar",
             confirmButtonColor: "#D90429",
+            backdrop: "invisible",
             customClass: {
                 title: "fs-1 fw-bold",
                 htmlContainer: "fs-2",
@@ -148,6 +151,7 @@ function sendAlert(alertType){
         }).then((result) =>{
             result.isConfirmed && location.reload();
         })
+        makeItRain();
     } else if (alertType === "lose"){
         Swal.fire({
             title: "¡HAS PERDIDO!",
@@ -159,6 +163,7 @@ function sendAlert(alertType){
             cancelButtonText: "Cerrar",
             confirmButtonText: "Volver a jugar",
             confirmButtonColor: "#D90429",
+            backdrop: "invisible",
             customClass: {
                 title: "fs-1 fw-bold",
                 htmlContainer: "fs-2",

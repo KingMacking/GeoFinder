@@ -52,6 +52,9 @@ body.dark-mode .modal-content {
 * {
   transition: all 100ms; }
 
+.swal2-backdrop-show {
+  background: rgba(0, 0, 0, 0.1) !important; }
+
 /*PARTIALS*/
 /*HEADER*/
 header {
