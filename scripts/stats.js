@@ -48,12 +48,12 @@ export function showStatsModal(){
                             <div class="text-center fs-3"><p class="fw-bolder">${winPercentage}</p><p>% Ganadas</p></div>`;
     guessStats.classList.add("d-flex", "justify-content-between");
     guessDistributionStats.innerHTML = `<h2 class="text-center">DISTRIBUCION DE ACIERTOS</h2>
-                                        <p><span>1: </span><span>${storedStats.guessDistribution[1]}</span></p>
-                                        <p><span>2: </span><span>${storedStats.guessDistribution[2]}</span></p>
-                                        <p><span>3: </span><span>${storedStats.guessDistribution[3]}</span></p>
-                                        <p><span>4: </span><span>${storedStats.guessDistribution[4]}</span></p>
-                                        <p><span>5: </span><span>${storedStats.guessDistribution[5]}</span></p>
-                                        <p><span>6: </span><span>${storedStats.guessDistribution[6]}</span></p>`;
+                                        <p><span>N°1: </span><span>${storedStats.guessDistribution[1]}</span></p>
+                                        <p><span>N°2: </span><span>${storedStats.guessDistribution[2]}</span></p>
+                                        <p><span>N°3: </span><span>${storedStats.guessDistribution[3]}</span></p>
+                                        <p><span>N°4: </span><span>${storedStats.guessDistribution[4]}</span></p>
+                                        <p><span>N°5: </span><span>${storedStats.guessDistribution[5]}</span></p>
+                                        <p><span>N°6: </span><span>${storedStats.guessDistribution[6]}</span></p>`;
     guessDistributionStats.classList.add("fs-3", "border-top", "py-3");
     statsModalBody.classList.add("p-5");
     statsModalBody.appendChild(guessStats);

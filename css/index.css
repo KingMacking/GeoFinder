@@ -44,6 +44,24 @@ body.dark-mode .modal-content {
   background-color: #D90429 !important;
   color: #EDF2F4; }
 
+.wrong-up {
+  background-color: #D90429 !important;
+  color: #EDF2F4;
+  background: url("../../img/geofinder/gf-arrow-clues-up.svg") no-repeat top/40%; }
+
+.wrong-down {
+  background-color: #D90429 !important;
+  color: #EDF2F4;
+  background: url("../../img/geofinder/gf-arrow-clues-down.svg") no-repeat bottom/40%; }
+
+.wrong {
+  background-color: #D90429 !important;
+  color: #EDF2F4; }
+
+.correct {
+  background-color: #38943e !important;
+  color: #EDF2F4; }
+
 #variable-text .cls-4 {
   fill: #1d1d1b; }
   body.dark-mode #variable-text .cls-4 {
@@ -194,6 +212,25 @@ body.dark-mode #main {
   background-color: #0B090A;
   color: #EDF2F4; }
 
+#loading {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  opacity: 0.97;
+  background-color: #fff;
+  z-index: 99; }
+  body.dark-mode #loading {
+    background-color: #161A1D; }
+  #loading #loading-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100; }
+
 #game-main {
   background-color: #EDF2F4;
   max-height: 75vh;
@@ -270,11 +307,24 @@ body.dark-mode #main {
     body.dark-mode #game-main .guess-section {
       background-color: #0B090A;
       color: #EDF2F4; }
-  #game-main .image-section {
+  #game-main .clue-section {
+    background: url("../../img/geofinder/gf-home-background.svg") no-repeat center/80%;
     width: 75%;
-    height: 100%; }
-    #game-main .image-section .carousel .carousel-inner .carousel-item img {
-      height: 75vh; }
+    height: 75vh;
+    background-color: #EDF2F4; }
+    body.dark-mode #game-main .clue-section {
+      background-color: #0B090A;
+      color: #EDF2F4; }
+    #game-main .clue-section .clue {
+      width: 30rem;
+      height: 30rem; }
+      #game-main .clue-section .clue-info {
+        background-color: #dadada;
+        width: 75%;
+        height: 75%; }
+        body.dark-mode #game-main .clue-section .clue-info {
+          background-color: #161A1D;
+          color: #EDF2F4; }
   body.dark-mode #game-main {
     background-color: #0B090A;
     color: #EDF2F4; }

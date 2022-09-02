@@ -1,14 +1,22 @@
-import {countryData} from './countries.js';
+// import {countryData} from './countries.js';
 import {userStats, updateStats, showStatsModal} from './stats.js';
-import { getCountryImages } from './hooks.js';
 import { makeItRain } from './hooks.js';
+import { getCountryClues } from './hooks.js';
+
 
 //-----Variables-----
 const guess = document.querySelectorAll(".guess");
 const guessButton = document.querySelector("#btnGuess");
+const replayButton = document.querySelector("#btnReplay");
 const countrySelect = document.querySelector("#countrySelect");
 const flag = document.querySelector("#flag-image");
 const statsButtonOpen = document.querySelector("#stats-button");
+const loadingOverlay = document.querySelector("#loading");
+//Clues
+const areaClue = document.querySelector("#areaClue");
+const popClue = document.querySelector("#popClue");
+const hemClue = document.querySelector("#hemClue");
+const continentClue = document.querySelector("#continentClue");
 const arrowDirections = {
     N: "⬆️",
     NNE: "↗️",
@@ -27,31 +35,37 @@ const arrowDirections = {
     NW: "↖️",
     NNW: "↖️",
 }
-// const geolib = require('geolib');
+
 
 let guessNumber = 0
-let countryA = countryData[Math.round(Math.random()*countryData.length)];
-console.log(countryA);
 
-let countryImage = getCountryImages(countryA.name);
-console.log(countryImage)
+
 
 //-----Events-----
 guessButton.addEventListener("click", compareCountries);
+replayButton.addEventListener("click", refreshPage);
 statsButtonOpen.addEventListener("click", showStatsModal);
 
 //-----Functions-----
-
-//Add all countries to selection options
-function addCountriesOptions(){
-    for(const country of countryData){
+const getCountries = async () => {
+    const resp = await fetch('./scripts/countries.json');
+    const data = await resp.json();
+    let countries = data.countryData;
+    for(const country of countries){
         let option = document.createElement("option");
         option.value = `${country.name.toUpperCase()}`;
         option.innerHTML = `${country.name.toUpperCase()}`;
         countrySelect.appendChild(option);
     }
+    let randomCountry = countries[Math.round(Math.random()*countries.length)];
+    localStorage.setItem("countryA", JSON.stringify(randomCountry));
+    setTimeout(() =>{
+        loadingOverlay.style.display = "none";
+    }, 2000);
+    return countries
 }
-addCountriesOptions();
+let countryData = await getCountries();
+let countryA = JSON.parse(localStorage.getItem("countryA"));
 
 //Obtain selected country
 function getSelectedCountry(){
@@ -62,6 +76,7 @@ function getSelectedCountry(){
 //Compare countries to obtain data
 function compareCountries(){
     let guessCountry = getSelectedCountry();
+    console.log(countryData);
     if (guessCountry.toUpperCase() !== (countryA.name).toUpperCase()) {
         let countryB = countryData.find((pais)=>{
             return pais.name.toUpperCase() === guessCountry.toUpperCase();
@@ -74,6 +89,8 @@ function compareCountries(){
             );
             guess[guessNumber].innerText = "El pais a adivinar se encuentra a "+distance+"KM hacia "+arrowDirections[geolibDirection];
             guessNumber++;
+            //Get Clues
+            compareClues(countryA.name, countryB.name);
         } else {
             Swal.fire({
                 title: "ELIGE UN PAÍS",
@@ -98,15 +115,86 @@ function compareCountries(){
         userStats.playedCount++;
         userStats.winCount++;
         updateStats(userStats);
+        //Get clues
+        compareClues(countryA.name, countryA.name);
     }
     guessNumber === 6 ? 
         (sendAlert("lose"), 
         userStats.currentStreak = 0, 
         userStats.playedCount++, 
         updateStats(userStats)) : null;
-
-    
+    async function compareClues(country1, country2){
+        let countryAClues = await getCountryClues(country1);
+        if (country1 == country2){
+            //Area
+            areaClue.classList.remove("wrong-up", "wrong-down");
+            areaClue.classList.add("correct");
+            areaClue.innerText = `${countryAClues.area} km²`;
+            //Population
+            popClue.classList.remove("wrong-up", "wrong-down");
+            popClue.classList.add("correct");
+            console.log(countryAClues.population);
+            if(countryAClues.population > 1000000){
+                popClue.innerText = `${countryAClues.population/1000000} M`;
+            } else if (countryAClues.population > 100000) {
+                popClue.innerText = `${countryAClues.population/100000} K`;
+            } else {
+                popClue.innerText = `${countryAClues.population}`;
+            }
+            //Hem
+            country1.latitude > 0 ? (hemClue.classList.add("correct"), hemClue.innerText = "NORTE") : (hemClue.classList.add("corret"), hemClue.innerText = "SUR");
+            //Continent
+            continentClue.classList.add("correct");
+            continentClue.innerText = `${countryAClues.region.toUpperCase()}`;
+        } else {
+            //Consult countryB clues only when needed
+            let countryBClues = await getCountryClues(country2);
+            //Area
+            countryAClues.area > countryBClues.area ? (areaClue.classList.add("wrong-up"), areaClue.innerText = `${countryBClues.area} km²`) : (areaClue.classList.add("wrong-down"), areaClue.innerText = `${countryBClues.area} km²`);
+            //Population
+            console.log(countryBClues.population);
+            console.log(countryAClues.population);
+            if(countryAClues.population > countryBClues.population){
+                popClue.classList.add("wrong-up")
+                if(countryBClues.population > 1000000){
+                    popClue.innerText = `${countryBClues.population/1000000} M`;
+                } else if (countryBClues.population > 100000) {
+                    popClue.innerText = `${countryBClues.population/100000} K`;
+                } else {
+                    popClue.innerText = `${countryBClues.population}`;
+                }
+            } else {
+                popClue.classList.add("wrong-down")
+                if(countryBClues.population > 1000000){
+                    popClue.innerText = `${countryBClues.population/1000000} M`;
+                } else if (countryBClues.population > 100000) {
+                    popClue.innerText = `${countryBClues.population/100000} K`;
+                } else {
+                    popClue.innerText = `${countryBClues.population}`;
+                }
+            }
+            //Hem
+            if(country1.latitude > 0 && country2.latitude > 0) {
+                hemClue.classList.add("correct");
+                hemClue.innerText = "NORTE";
+            } else if (country1.latitude < 0 && country2.latitude < 0){
+                hemClue.classList.add("wrong");
+                hemClue.innerText = "SUR";
+            } else if (country1.latitude < 0 && country2.latitude > 0){
+                hemClue.classList.add("wrong");
+                hemClue.innerText = "NORTE";
+            } else {
+                hemClue.classList.add("correct");
+                hemClue.innerText = "SUR";
+            }
+            //Continent
+            countryAClues.region != countryBClues.region ? (continentClue.classList.add("wrong"), continentClue.innerText = `${countryBClues.region.toUpperCase()}`) : (continentClue.classList.add("correct"), continentClue.innerText = `${countryBClues.region.toUpperCase()}`);
+            
+        }
+    }
 }
+
+
 
 //Obtain distance between centers of countries
 function getDistance (lat1, lon1, lat2, lon2) {
@@ -178,7 +266,11 @@ function sendAlert(alertType){
         })
     }
     flag.src = `https://flagcdn.com/${countryA.code}.svg`;
-    guessButton.disabled = true;
+    guessButton.classList.toggle("visually-hidden")
+    replayButton.classList.toggle("visually-hidden")
 }
 
-// const saveLocal = (key, value) => {localStorage.setItem(key, value)};
+function refreshPage(){
+    window.location.reload();
+}
+
