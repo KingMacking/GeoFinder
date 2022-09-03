@@ -142,7 +142,7 @@ function compareCountries(){
                 popClue.innerText = `${countryAClues.population}`;
             }
             //Hem
-            country1.latitude > 0 ? (hemClue.classList.add("correct"), hemClue.innerText = "NORTE") : (hemClue.classList.add("corret"), hemClue.innerText = "SUR");
+            country1.latitude > 0 ? (hemClue.classList.add("correct"), hemClue.innerText = "NORTE") : (hemClue.classList.add("correct"), hemClue.innerText = "SUR");
             //Continent
             continentClue.classList.add("correct");
             continentClue.innerText = `${countryAClues.region.toUpperCase()}`;
@@ -150,12 +150,13 @@ function compareCountries(){
             //Consult countryB clues only when needed
             let countryBClues = await getCountryClues(country2);
             //Area
-            countryAClues.area > countryBClues.area ? (areaClue.classList.add("wrong-up"), areaClue.innerText = `${countryBClues.area} km²`) : (areaClue.classList.add("wrong-down"), areaClue.innerText = `${countryBClues.area} km²`);
+            countryAClues.area > countryBClues.area ? (areaClue.classList.add("wrong-up"), areaClue.innerText = `${countryBClues.area} km²`, areaClue.classList.remove("wrong-down")) : (areaClue.classList.add("wrong-down"), areaClue.innerText = `${countryBClues.area} km²`, areaClue.classList.add("wrong-up"));
             //Population
             console.log(countryBClues.population);
             console.log(countryAClues.population);
             if(countryAClues.population > countryBClues.population){
-                popClue.classList.add("wrong-up")
+                popClue.classList.remove("wrong-down");
+                popClue.classList.add("wrong-up");
                 if(countryBClues.population > 1000000){
                     popClue.innerText = `${countryBClues.population/1000000} M`;
                 } else if (countryBClues.population > 100000) {
@@ -164,7 +165,8 @@ function compareCountries(){
                     popClue.innerText = `${countryBClues.population}`;
                 }
             } else {
-                popClue.classList.add("wrong-down")
+                popClue.classList.remove("wrong-up");
+                popClue.classList.add("wrong-down");
                 if(countryBClues.population > 1000000){
                     popClue.innerText = `${countryBClues.population/1000000} M`;
                 } else if (countryBClues.population > 100000) {
