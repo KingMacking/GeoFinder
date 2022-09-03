@@ -150,7 +150,7 @@ function compareCountries(){
             //Consult countryB clues only when needed
             let countryBClues = await getCountryClues(country2);
             //Area
-            countryAClues.area > countryBClues.area ? (areaClue.classList.add("wrong-up"), areaClue.innerText = `${countryBClues.area} km²`, areaClue.classList.remove("wrong-down")) : (areaClue.classList.add("wrong-down"), areaClue.innerText = `${countryBClues.area} km²`, areaClue.classList.add("wrong-up"));
+            countryAClues.area > countryBClues.area ? (areaClue.classList.remove("wrong-down"), areaClue.classList.add("wrong-up"), areaClue.innerText = `${countryBClues.area} km²`) : (areaClue.classList.remove("wrong-up"), areaClue.classList.add("wrong-down"), areaClue.innerText = `${countryBClues.area} km²`);
             //Population
             console.log(countryBClues.population);
             console.log(countryAClues.population);
