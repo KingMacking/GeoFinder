@@ -1,5 +1,6 @@
 const statsModalBody = document.querySelector("#stats-modal-body");
 
+//First time user stats
 export let userStats = {
     guessDistribution: {
         1: 0,

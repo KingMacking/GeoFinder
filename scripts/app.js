@@ -1,5 +1,4 @@
-// import {countryData} from './countries.js';
-import {userStats, updateStats, showStatsModal} from './stats.js';
+import { userStats, updateStats, showStatsModal } from './stats.js';
 import { makeItRain } from './hooks.js';
 import { getCountryClues } from './hooks.js';
 
@@ -17,6 +16,7 @@ const areaClue = document.querySelector("#areaClue");
 const popClue = document.querySelector("#popClue");
 const hemClue = document.querySelector("#hemClue");
 const continentClue = document.querySelector("#continentClue");
+//Directions for geolib
 const arrowDirections = {
     N: "⬆️",
     NNE: "↗️",
@@ -59,6 +59,7 @@ const getCountries = async () => {
     }
     let randomCountry = countries[Math.round(Math.random()*countries.length)];
     localStorage.setItem("countryA", JSON.stringify(randomCountry));
+    //Timeout to give time to the fetch to finish with an overlay
     setTimeout(() =>{
         loadingOverlay.style.display = "none";
     }, 2000);
@@ -83,6 +84,7 @@ function compareCountries(){
         })
         if (countryB) {
             let distance = Math.round(getDistance(countryA.latitude, countryA.longitude, countryB.latitude, countryB.longitude));
+            //Get direction from GeoLib library
             let geolibDirection = geolib.getCompassDirection(
                 { latitude: (countryB.latitude), longitude: (countryB.longitude) },
                 { latitude: (countryA.latitude), longitude: (countryA.longitude) }
