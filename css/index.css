@@ -297,7 +297,7 @@ body.dark-mode #main {
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
-    width: 400px;
+    width: 500px;
     height: 75vh;
     background-color: #EDF2F4;
     padding: 2em; }
@@ -306,7 +306,7 @@ body.dark-mode #main {
       #game-main .guess-section .flag-guess img {
         height: 100%; }
     #game-main .guess-section .form-control {
-      width: 320px;
+      width: 400px;
       height: 4vh;
       border: none;
       font-size: 20px;
@@ -314,7 +314,7 @@ body.dark-mode #main {
       background-color: #dadada; }
     #game-main .guess-section .btn {
       height: 12%;
-      width: 200px;
+      width: 250px;
       font-size: 30px;
       border-radius: 2em;
       background-color: #D90429;
@@ -326,7 +326,7 @@ body.dark-mode #main {
         transition: all 500ms; }
     #game-main .guess-section .guesses {
       height: auto;
-      width: 320px;
+      width: 400px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -344,7 +344,7 @@ body.dark-mode #main {
           color: #EDF2F4; }
     #game-main .guess-section .form-select {
       height: 4vh;
-      width: 320px;
+      width: 400px;
       margin: 0;
       font-size: 13px;
       padding: 0 3%;
