@@ -144,7 +144,7 @@ function compareCountries(){
                 popClue.innerText = `${countryAClues.population}`;
             }
             //Hem
-            country1.latitude > 0 ? (hemClue.classList.add("correct"), hemClue.innerText = "NORTE") : (hemClue.classList.add("correct"), hemClue.innerText = "SUR");
+            country1.latlng[0] > 0 ? (hemClue.classList.add("correct"), hemClue.innerText = "NORTE") : (hemClue.classList.add("correct"), hemClue.innerText = "SUR");
             //Continent
             continentClue.classList.add("correct");
             continentClue.innerText = `${countryAClues.region.toUpperCase()}`;
@@ -178,21 +178,21 @@ function compareCountries(){
                 }
             }
             //Hem
-            if(country1.latitude > 0 && country2.latitude > 0) {
-                hemClue.classList.remove("correct", "wrong");
+            if((countryAClues.latlng[0]) > 0 && (countryBClues.latlng[0]) > 0) {
+                hemClue.classList.remove("wrong");
                 hemClue.classList.add("correct");
                 hemClue.innerText = "NORTE";
-            } else if (country1.latitude < 0 && country2.latitude < 0){
-                hemClue.classList.remove("correct", "wrong");
-                hemClue.classList.add("wrong");
+            } else if ((countryAClues.latlng[0]) < 0 && (countryBClues.latlng[0]) < 0){
+                hemClue.classList.remove("wrong");
+                hemClue.classList.add("correct");
                 hemClue.innerText = "SUR";
-            } else if (country1.latitude < 0 && country2.latitude > 0){
-                hemClue.classList.remove("correct", "wrong");
+            } else if ((countryAClues.latlng[0]) < 0 && (countryBClues.latlng[0]) > 0){
+                hemClue.classList.remove("correct");
                 hemClue.classList.add("wrong");
                 hemClue.innerText = "NORTE";
             } else {
-                hemClue.classList.remove("correct", "wrong");
-                hemClue.classList.add("correct");
+                hemClue.classList.remove("correct");
+                hemClue.classList.add("wrong");
                 hemClue.innerText = "SUR";
             }
             //Continent
