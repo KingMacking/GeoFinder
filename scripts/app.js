@@ -179,15 +179,19 @@ function compareCountries(){
             }
             //Hem
             if(country1.latitude > 0 && country2.latitude > 0) {
+                hemClue.classList.remove("correct", "wrong");
                 hemClue.classList.add("correct");
                 hemClue.innerText = "NORTE";
             } else if (country1.latitude < 0 && country2.latitude < 0){
+                hemClue.classList.remove("correct", "wrong");
                 hemClue.classList.add("wrong");
                 hemClue.innerText = "SUR";
             } else if (country1.latitude < 0 && country2.latitude > 0){
+                hemClue.classList.remove("correct", "wrong");
                 hemClue.classList.add("wrong");
                 hemClue.innerText = "NORTE";
             } else {
+                hemClue.classList.remove("correct", "wrong");
                 hemClue.classList.add("correct");
                 hemClue.innerText = "SUR";
             }
