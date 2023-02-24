@@ -1,6 +1,6 @@
 
 
-# [_**Kingdom Store**_](https://geofinderapp.netlify.app "Live app")
+# [_**GeoFinder**_](https://geofinderapp.netlify.app "Live app")
 
 <p align='center'>
     🌍¡Visualiza la app haciendo click en la imagen!🌍
