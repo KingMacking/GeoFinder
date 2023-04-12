@@ -1,6 +1,6 @@
 
 
-# [_**GeoFinder**_](https://geofinderapp.netlify.app "Live app")
+# [_**GeoFinder V1**_](https://geofinderapp.netlify.app "Live app")
 
 <p align='center'>
     🌍¡Visualiza la app haciendo click en la imagen!🌍
@@ -9,17 +9,22 @@
     <a href="https://geofinderapp.netlify.app"><img height="80"src="https://github.com/KingMacking/GeoFinder/blob/master/img/geofinder/gf-logo.svg"></a>
 </p>
 
-## Geography game
+## Geofinder V1
+Antigua version del juego geográfico. <br>
+### **Nueva version:**
+- [GeoFinder V2](https://github.com/KingMacking/GeoFinderReact)
 
-GeoFinder es un juego basado en la geografía en el cual tendras que adivinar el país cada vez que jueges.
+## Juego geográfico
 
-- Entrena tu geografia 🌏
-- Lleva control de tus partidas con estadisticas 📊
-- Diviertete jugando 🎮
+GeoFinder es un juego basado en la geografía en el cual tendrás que adivinar el país cada vez que juegues.
+
+- Entrena tu geografía 🌏
+- Lleva control de tus partidas con estadísticas 📊
+- Diviértete jugando 🎮
 
 ## Features
 
-- **Darkmode:** Posibilidad de elegir entre los distintos temas, claro y oscuro el cual tiene persistencia de usuario.
+- **Darkmode:** Posibilidad de elegir entre los distintos temas, claro y oscuro, el cual tiene persistencia de usuario.
 - **Datos en tiempo real:** Los datos colocados son en tiempo real, obtenidos de una API.
 
 ## Tecnologias Utilizadas
@@ -37,13 +42,13 @@ GeoFinder es un juego basado en la geografía en el cual tendras que adivinar el
 </p>
 
 ### _Librerias_
-- [Geolib]  - Obtención de datos geograficos de paises.
+- [Geolib]  - Obtención de datos geográficos de países.
 
 
 ## Instalación
 1. Clonar el repositorio
 ```sh
-git clone https://github.com/KingMacking/Ichiraku_News.git
+git clone https://github.com/KingMacking/GeoFinder.git
 ```
 2. Instalar las dependencias desde NPM
 ```sh
